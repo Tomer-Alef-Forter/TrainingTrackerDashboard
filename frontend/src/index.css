@@ -526,6 +526,40 @@ input:disabled {
 .task-meta a:hover {
   text-decoration: underline;
 }
+.recording-link.recording-ok {
+  color: #16a34a;
+}
+.recording-link.recording-denied {
+  color: #dc2626;
+}
+.rec-status {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+  vertical-align: middle;
+  background: #c2c8d2;
+}
+.rec-status.accessible {
+  background: #16a34a;
+}
+.rec-status.denied {
+  background: #dc2626;
+}
+.rec-status.checking {
+  background: #c2c8d2;
+  animation: rec-pulse 1s ease-in-out infinite;
+}
+@keyframes rec-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
 .task-comments {
   margin: 10px 0 0;
   font-size: 13px;

@@ -3,6 +3,45 @@ import { useDispatch } from "react-redux";
 
 import { toggleTask, deleteTask, updateTask } from "../features/tasks/tasksSlice";
 import { openEditTask } from "../features/ui/uiSlice";
+import { useDriveAccess } from "../features/recordings/useDriveAccess";
+
+const ACCESS_TOOLTIP = {
+  checking: "Checking your Google Drive access…",
+  accessible: "You appear to have access (based on your Google login in this browser).",
+  denied:
+    "You may not have access — or you're not signed into Google in this browser.",
+};
+
+function RecordingLink({ url }) {
+  const status = useDriveAccess(url);
+  const showDot = status !== "unknown";
+  return (
+    <span>
+      <strong>Recording:</strong>{" "}
+      {showDot && (
+        <span
+          className={`rec-status ${status}`}
+          title={ACCESS_TOOLTIP[status]}
+          aria-label={ACCESS_TOOLTIP[status]}
+        />
+      )}
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        className={
+          status === "accessible"
+            ? "recording-link recording-ok"
+            : status === "denied"
+            ? "recording-link recording-denied"
+            : "recording-link"
+        }
+      >
+        link
+      </a>
+    </span>
+  );
+}
 
 export default function TaskCard({ task }) {
   const dispatch = useDispatch();
@@ -87,14 +126,7 @@ export default function TaskCard({ task }) {
             <strong>Duration:</strong> {task.duration} hrs
           </span>
         )}
-        {task.recording && (
-          <span>
-            <strong>Recording:</strong>{" "}
-            <a href={task.recording} target="_blank" rel="noreferrer">
-              link
-            </a>
-          </span>
-        )}
+        {task.recording && <RecordingLink url={task.recording} />}
       </div>
 
       {expanded ? (
