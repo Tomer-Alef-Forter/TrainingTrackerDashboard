@@ -9,7 +9,11 @@ from typing import Any, Dict, List, Optional
 
 from tinydb import TinyDB, Query
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "db.json")
+# Override with TASK_TRACKER_DB to point at a different file (e.g. an isolated
+# database for tests) so the real db.json is never touched during testing.
+DB_PATH = os.environ.get(
+    "TASK_TRACKER_DB", os.path.join(os.path.dirname(__file__), "db.json")
+)
 
 # Module-level handle. Reassigned by ``reload_db`` after an import overwrites
 # the underlying file.

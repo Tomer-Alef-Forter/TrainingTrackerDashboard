@@ -467,6 +467,24 @@ input:disabled {
   align-items: center;
   gap: 10px;
 }
+.task-expand-toggle {
+  border: none;
+  background: none;
+  padding: 2px;
+  color: var(--muted);
+  border-radius: 6px;
+  flex: none;
+}
+.task-expand-toggle:hover {
+  background: #eef0f3;
+}
+.task-expand-toggle .chevron {
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+.task-expand-toggle .chevron.collapsed {
+  transform: rotate(-90deg);
+}
 .task-check input {
   width: 18px;
   height: 18px;
@@ -477,6 +495,11 @@ input:disabled {
   font-size: 14.5px;
   font-weight: 600;
   flex: 1;
+  cursor: pointer;
+}
+.comment-badge {
+  font-size: 13px;
+  opacity: 0.8;
 }
 .task-card-actions {
   display: flex;
@@ -510,6 +533,25 @@ input:disabled {
   border-top: 1px dashed var(--border-strong);
   padding-top: 8px;
   color: var(--text-2);
+}
+.task-expand {
+  margin-top: 10px;
+  border-top: 1px dashed var(--border-strong);
+  padding-top: 10px;
+}
+.comment-label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.comment-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 /* --- Modals & forms --- */
