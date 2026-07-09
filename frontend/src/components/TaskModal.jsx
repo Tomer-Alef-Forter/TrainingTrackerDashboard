@@ -70,7 +70,7 @@ export default function TaskModal() {
               <input
                 type="number"
                 min="0"
-                step="0.5"
+                step="any"
                 value={form.duration}
                 onChange={set("duration")}
               />
